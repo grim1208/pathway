@@ -1,23 +1,29 @@
 <head>
   <title>bus-route</title>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbUW_Oxo0EcRx7qPZKN8K_u7DSKe52opU&sensor=false"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
-  {{> hello}}
+  {{>homeOverlay}}
   {{>mapThis}}
 </body>
-
-<template name="hello">
-  <h1>Hello World!</h1>
-  {{greeting}}
-  <input type="button" value="Click" />
+<template name="homeOverlay">
+	<div id="blkblnkt">
+		<a href="/"><div class="logo"></div></a>
+		<div class="nav-home">
+			<a class="anchor-my-trip"><div class="my-trip"><h1>My Trip</h1></div></a>
+			<div class="all-routes"><h1>All Routes</h1></div>
+			<div class="pay"><h1>Pay</h1></div>
+			<div class="explore"><h1>Explore</h1></div>
+		</div>
+		<div class="footer"></div>
+	</div>
 </template>
-
 <template name="mapThis">
-	<div id="map_canvas" style="width:100%; height:500px"></div>
-</template>
-
-<template name="flyout">
-
+<!-- Responsive iFrame -->
+	<div class="Flexible-container">
+	    <div width="100%" height="100%" id="map_canvas">
+	    </div>
+	</div>
 </template>

@@ -1,10 +1,8 @@
 if (Meteor.isClient) {
+  /*
   Template.hello.greeting = function () {
     return "Welcome to bus-route.";
   };
-  Template.mapThis.rendered = function () {
-    initialize();
-  }
   Template.hello.events({
     'click input' : function () {
       // template data, if any, is available in 'this'
@@ -12,6 +10,17 @@ if (Meteor.isClient) {
         console.log("You pressed the button");
     }
   });
+  */
+  Template.mapThis.rendered = function () {
+    initialize();
+  }
+  Template.homeOverlay.events = {
+    'touchstart .anchor-my-trip' : function () {
+      $('#blkblnkt').slideUp();
+      $('#map_canvas').css({'opacity':'1'});
+    }
+  };
+  var watchId;
   function initialize() {
       var browserSupportFlag =  new Boolean();
       if(navigator.geolocation)
@@ -21,7 +30,7 @@ if (Meteor.isClient) {
         navigator.geolocation.getCurrentPosition(function(position) {
           // Make the map
           var map = new google.maps.Map(document.getElementById('map_canvas'), {
-            zoom: 20,
+            zoom: 17,
             mapTypeControl: false,
             streetViewControl: false,
             panControl: false,
@@ -53,6 +62,7 @@ if (Meteor.isClient) {
           var watcher = navigator.geolocation.watchPosition(function(newPosition) {
               // Each time a new location is registered, move the marker.
               console.log(newPosition.coords.latitude,newPosition.coords.longitude);
+
               myLocation = new google.maps.LatLng(newPosition.coords.latitude,newPosition.coords.longitude);
               markerYou.setPosition(myLocation);
           }, function() {}, {enableHighAccuracy:true, maximumAge:30000, timeout:27000});
