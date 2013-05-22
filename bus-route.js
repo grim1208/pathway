@@ -15,11 +15,20 @@ if (Meteor.isClient) {
     initialize();
   }
   Template.homeOverlay.events = {
-    'touchstart .anchor-my-trip' : function () {
-      $('#blkblnkt').slideUp();
-      $('#map_canvas').css({'opacity':'1'});
-    }
+    'touchstart .my-trip' : function () {
+       $("body").append(Meteor.render(function() {
+            $('.blkblnkt.homeOverlay-cl').detach();
+            return Template.myTripOverlay();
+        }));
+    },
+    'click .my-trip' : function () {
+       $("body").append(Meteor.render(function() {
+            $('.blkblnkt.homeOverlay-cl').detach();
+            return Template.myTripOverlay();
+        }));
+    },
   };
+
   var watchId;
   function initialize() {
       var browserSupportFlag =  new Boolean();
